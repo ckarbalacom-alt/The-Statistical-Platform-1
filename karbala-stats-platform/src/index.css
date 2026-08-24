@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    font-family: 'Cairo', 'Noto Naskh Arabic', sans-serif;
+  }
+
+  body {
+    @apply bg-[#f7f4ee] text-gray-900;
+    direction: rtl;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-primary-50; }
+  ::-webkit-scrollbar-thumb { @apply bg-primary-200 rounded-full; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-4 py-2 rounded-xl font-medium shadow-sm shadow-primary/20 hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-accent {
+    @apply bg-accent text-white px-4 py-2 rounded-xl font-medium shadow-sm shadow-accent/20 hover:bg-accent-600 transition-colors;
+  }
+  .btn-outline {
+    @apply border border-primary-200 bg-white/70 text-primary px-4 py-2 rounded-xl font-medium hover:bg-primary hover:text-white transition-colors;
+  }
+  .card {
+    @apply bg-white/90 rounded-2xl shadow-sm shadow-primary-100/60 border border-white/80 p-6 backdrop-blur;
+  }
+  .input {
+    @apply w-full border border-primary-100 bg-white/90 rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors;
+  }
+  .label {
+    @apply block text-sm font-medium text-gray-700 mb-1;
+  }
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .pastel-panel {
+    @apply bg-white/75 border border-white/80 shadow-sm shadow-primary-100/60 rounded-3xl backdrop-blur;
+  }
+  .pastel-icon {
+    @apply inline-flex items-center justify-center rounded-2xl ring-1 ring-inset;
+  }
+  .rich-editor:empty::before {
+    content: attr(data-placeholder);
+    @apply text-gray-400;
+  }
+  .rich-editor a,
+  .rich-content a {
+    @apply text-primary underline;
+  }
+  .rich-editor blockquote,
+  .rich-content blockquote {
+    @apply border-r-4 border-primary/30 pr-4 text-gray-600;
+  }
+  .rich-editor ul,
+  .rich-content ul {
+    @apply list-disc pr-6;
+  }
+  .rich-editor ol,
+  .rich-content ol {
+    @apply list-decimal pr-6;
+  }
+}
