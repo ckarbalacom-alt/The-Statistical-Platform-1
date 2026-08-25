@@ -5,6 +5,7 @@ import { newsApi } from '../../api/news'
 import { categoriesApi } from '../../api/categories'
 import Spinner from '../../components/ui/Spinner'
 import CategoryIcon from '../../components/ui/CategoryIcon'
+import { sanitizeHtml } from '../../lib/sanitizeHtml'
 
 const typeMap: Record<string, string> = { news: 'خبر', event: 'فعالية', announcement: 'إعلان' }
 
@@ -71,7 +72,7 @@ export default function NewsArticlePage() {
             {article.body_ar ? (
               <div
                 className="rich-content prose prose-lg max-w-none text-gray-700 leading-loose"
-                dangerouslySetInnerHTML={{ __html: article.body_ar }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(article.body_ar) }}
               />
             ) : (
               <p className="text-gray-400 text-center py-10">لا يوجد محتوى تفصيلي لهذا الخبر.</p>
