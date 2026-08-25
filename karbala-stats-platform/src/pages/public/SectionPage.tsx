@@ -5,6 +5,7 @@ import { categoriesApi } from '../../api/categories'
 import { newsApi } from '../../api/news'
 import Spinner from '../../components/ui/Spinner'
 import CategoryIcon from '../../components/ui/CategoryIcon'
+import { sanitizeHtml } from '../../lib/sanitizeHtml'
 
 export default function SectionPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -51,7 +52,7 @@ export default function SectionPage() {
             {(page?.summary_ar || category.description_ar) && (
               <div
                 className="rich-content text-gray-600 leading-7 max-w-3xl"
-                dangerouslySetInnerHTML={{ __html: page?.summary_ar ?? category.description_ar ?? '' }}
+                dangerouslySetInnerHTML={{ __html: sanitizeHtml(page?.summary_ar ?? category.description_ar ?? '') }}
               />
             )}
           </div>
@@ -62,7 +63,7 @@ export default function SectionPage() {
         <section className="card mb-8">
           <div
             className="rich-content prose prose-lg max-w-none leading-8 text-gray-700"
-            dangerouslySetInnerHTML={{ __html: page.body_ar }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(page.body_ar) }}
           />
         </section>
       ) : null}
@@ -127,7 +128,7 @@ export default function SectionPage() {
                 {child.page?.summary_ar ? (
                   <div
                     className="rich-content text-sm text-gray-500 mt-2 line-clamp-2"
-                    dangerouslySetInnerHTML={{ __html: child.page.summary_ar }}
+                    dangerouslySetInnerHTML={{ __html: sanitizeHtml(child.page.summary_ar) }}
                   />
                 ) : null}
               </Link>
