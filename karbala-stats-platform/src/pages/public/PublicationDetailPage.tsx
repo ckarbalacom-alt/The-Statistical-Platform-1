@@ -4,6 +4,7 @@ import { Download, Eye, Calendar, FileText } from 'lucide-react'
 import { publicationsApi } from '../../api/publications'
 import Spinner from '../../components/ui/Spinner'
 import PublicationCard from '../../components/ui/PublicationCard'
+import { sanitizeHtml } from '../../lib/sanitizeHtml'
 
 export default function PublicationDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -43,7 +44,7 @@ export default function PublicationDetailPage() {
           {pub.description_ar && (
             <div
               className="rich-content prose prose-sm max-w-none text-gray-700 leading-relaxed"
-              dangerouslySetInnerHTML={{ __html: pub.description_ar }}
+              dangerouslySetInnerHTML={{ __html: sanitizeHtml(pub.description_ar) }}
             />
           )}
         </div>
